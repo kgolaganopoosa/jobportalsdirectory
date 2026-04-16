@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petal Chain - 2026 SA Job Portals Directory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-bg { background: radial-gradient(circle at top right, #0f172a, #000000); }
+        .card-hover:hover { transform: translateY(-8px); border-color: #3b82f6; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1); }
+        select { appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 0.5rem center; background-size: 1.5em 1.5em; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 leading-relaxed">
+
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+                    <i class="fas fa-briefcase text-white text-lg"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tighter text-slate-900">Petal Chain</span>
+            </div>
+            <div class="hidden md:flex gap-8 items-center font-semibold text-slate-600 text-sm">
+                <a href="#" class="text-blue-600">Home</a>
+                <a href="#finder" class="hover:text-blue-600 transition-colors">Find Portals</a>
+                <a href="https://www.gov.za/about-government/contact-directory/job-opportunities" target="_blank" class="hover:text-blue-600 transition-colors">Gov Jobs</a>
+                <button class="bg-black text-white px-6 py-2.5 rounded-full hover:bg-slate-800 transition-all">Submit Portal</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg text-white py-24 px-6 overflow-hidden relative">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block py-1 px-4 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold mb-6 border border-blue-500/30 uppercase">Employment 2026</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">Your Next <span class="text-blue-500">Career Move.</span></h1>
+            <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">The definitive directory of South Africa's top job boards, recruitment agencies, and government employment portals.</p>
+            
+            <div class="relative max-w-3xl mx-auto" id="finder">
+                <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                <input type="text" id="searchInput" onkeyup="filterPortals()" 
+                    placeholder="Search by portal name or category..." 
+                    class="w-full pl-16 pr-8 py-6 rounded-3xl text-slate-900 text-lg focus:ring-4 focus:ring-blue-500/50 outline-none shadow-2xl transition-all border-none">
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 -mt-10 relative z-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <p class="text-4xl font-extrabold text-slate-900" id="totalCount">0</p>
+                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Portals Listed</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
+                <p class="text-4xl font-extrabold text-blue-600">Top Tier</p>
+                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Verified Platforms</p>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <select id="categoryFilter" onchange="filterPortals()" class="w-full max-w-xs mx-auto block bg-black text-white p-4 rounded-2xl shadow-lg font-bold text-sm outline-none cursor-pointer hover:bg-slate-800 transition-all">
+                <option value="all">All Categories</option>
+                <option value="General">General Boards</option>
+                <option value="Government">Government & Public</option>
+                <option value="Executive">Executive & Professional</option>
+                <option value="Tech">Tech & Digital</option>
+                <option value="Niche">Niche Industries</option>
+            </select>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <button onclick="setFilter('general')" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500 transition-all text-center group">
+                <i class="fas fa-globe text-blue-600 text-3xl mb-3"></i>
+                <p class="text-base font-bold block">General Job Boards</p>
+            </button>
+            <button onclick="setFilter('government')" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500 transition-all text-center group">
+                <i class="fas fa-landmark text-blue-600 text-3xl mb-3"></i>
+                <p class="text-base font-bold block">Government & Public</p>
+            </button>
+            <button onclick="setFilter('recruitment')" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-500 transition-all text-center group">
+                <i class="fas fa-user-tie text-blue-600 text-3xl mb-3"></i>
+                <p class="text-base font-bold block">Top Agencies</p>
+            </button>
+        </div>
+
+        <div id="portalGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24">
+            </div>
+    </main>
+
+    <footer class="bg-black text-slate-500 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-briefcase text-white text-xs"></i>
+                </div>
+                <span class="text-xl font-bold text-white tracking-tighter">Petal Chain</span>
+            </div>
+            <p class="text-sm">Data curated for 2026. Always ensure you apply through official, secure channels.</p>
+        </div>
+    </footer>
+
+    <script>
+        const portals = [
+            // GENERAL BOARDS
+            { name: "PNet", type: "general", category: "General", link: "www.pnet.co.za" },
+            { name: "CareerJunction", type: "general", category: "General", link: "www.careerjunction.co.za" },
+            { name: "Indeed South Africa", type: "general", category: "General", link: "za.indeed.com" },
+            { name: "LinkedIn Jobs", type: "general", category: "Executive", link: "www.linkedin.com/jobs" },
+            { name: "Careers24", type: "general", category: "General", link: "www.careers24.com" },
+            { name: "BestJobs South Africa", type: "general", category: "General", link: "www.bestjobs.co.za" },
+            { name: "Job Mail", type: "general", category: "General", link: "www.jobmail.co.za" },
+            { name: "Gumtree Jobs", type: "general", category: "General", link: "www.gumtree.co.za/s-jobs/v1c8l10" },
+            
+            // GOVERNMENT
+            { name: "DPSA (Vacanies)", type: "government", category: "Government", link: "www.dpsa.gov.za/dpsa2g/vacancies.asp" },
+            { name: "E-Recruitment (Gauteng)", type: "government", category: "Government", link: "professionaljobcentre.gpg.gov.za" },
+            { name: "City of Cape Town Careers", type: "government", category: "Government", link: "jobs.capetown.gov.za" },
+            { name: "Western Cape Govt Jobs", type: "government", category: "Government", link: "www.westerncape.gov.za/jobs" },
+            { name: "Transnet Careers", type: "government", category: "Government", link: "www.transnet.net/Career/Pages/Career.aspx" },
+            { name: "Eskom Vacancies", type: "government", category: "Government", link: "web.eskom.co.za/dev_vacancies" },
+            { name: "SAPS Careers", type: "government", category: "Government", link: "www.saps.gov.za/careers" },
+
+            // RECRUITMENT AGENCIES / SPECIALIZED
+            { name: "Adcorp", type: "recruitment", category: "Executive", link: "www.adcorpgroup.com" },
+            { name: "Quest Recruitment", type: "recruitment", category: "General", link: "www.quest.co.za" },
+            { name: "Kelly", type: "recruitment", category: "General", link: "www.kelly.co.za" },
+            { name: "OfferZen (Tech)", type: "recruitment", category: "Tech", link: "www.offerzen.com" },
+            { name: "Giraffe", type: "recruitment", category: "General", link: "www.giraffe.co.za" },
+            { name: "Robert Walters", type: "recruitment", category: "Executive", link: "www.robertwalters.com" },
+            { name: "Michael Page", type: "recruitment", category: "Executive", link: "www.michaelpage.co.za" },
+            { name: "Bizcommunity Jobs", type: "general", category: "Niche", link: "www.bizcommunity.com/Jobs" },
+            { name: "NGO Pulse", type: "general", category: "Niche", link: "www.ngopulse.org/vacancies" },
+            { name: "Simplify.hr", type: "general", category: "Tech", link: "www.simplify.hr" },
+            { name: "JobJack (Entry Level)", type: "general", category: "General", link: "www.jobjack.co.za" }
+        ];
+
+        let currentTypeFilter = 'all';
+
+        function renderPortals(data) {
+            const grid = document.getElementById('collegeGrid') || document.getElementById('portalGrid');
+            grid.innerHTML = '';
+            data.forEach(item => {
+                const card = `
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 card-hover transition-all duration-300">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider">${item.category}</span>
+                            <i class="fas fa-external-link-alt text-slate-300"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-slate-900">${item.name}</h3>
+                        <p class="text-slate-500 text-sm mb-6 uppercase font-semibold tracking-tight">${item.type.replace('-', ' ')}</p>
+                        <a href="https://${item.link}" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-4 transition-all">
+                            Visit Portal <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+            document.getElementById('totalCount').innerText = data.length;
+        }
+
+        function filterPortals() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const category = document.getElementById('categoryFilter').value;
+
+            const filtered = portals.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search);
+                const matchesCategory = category === 'all' || p.category === category;
+                const matchesType = currentTypeFilter === 'all' || p.type === currentTypeFilter;
+                return matchesSearch && matchesCategory && matchesType;
+            });
+
+            renderPortals(filtered);
+        }
+
+        function setFilter(type) {
+            currentTypeFilter = type;
+            filterPortals();
+        }
+
+        // Initial Load
+        renderPortals(portals);
+    </script>
+</body>
+</html>
