@@ -37,7 +37,7 @@
         <div class="max-w-5xl mx-auto text-center relative z-10">
             <span class="inline-block py-1 px-4 rounded-full bg-blue-500/20 text-blue-400 text-xs font-bold mb-6 border border-blue-500/30 uppercase">Employment 2026</span>
             <h1 class="text-5xl md:text-7xl font-extrabold mb-8 tracking-tight">Your Next <span class="text-blue-500">Career Move.</span></h1>
-            <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">The definitive directory of South Africa's top job boards, recruitment agencies, and government employment portals.</p>
+            <p class="text-xl text-slate-400 mb-12 max-w-2xl mx-auto font-light">The definitive directory of South Africa's active job boards, verified recruitment agencies, and government employment hubs.</p>
             
             <div class="relative max-w-3xl mx-auto" id="finder">
                 <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
@@ -52,12 +52,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
                 <p class="text-4xl font-extrabold text-slate-900" id="totalCount">0</p>
-                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Portals Listed</p>
+                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Active Portals</p>
             </div>
 
             <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                <p class="text-4xl font-extrabold text-blue-600">Top Tier</p>
-                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Verified Platforms</p>
+                <p class="text-4xl font-extrabold text-blue-600">Active</p>
+                <p class="text-xs text-slate-500 uppercase font-bold tracking-widest mt-2">Verified Status</p>
             </div>
         </div>
 
@@ -99,13 +99,13 @@
                 </div>
                 <span class="text-xl font-bold text-white tracking-tighter">Petal Chain</span>
             </div>
-            <p class="text-sm">Data curated for 2026. Always ensure you apply through official, secure channels.</p>
+            <p class="text-sm">Active Directory 2026. Data verified for website availability.</p>
         </div>
     </footer>
 
     <script>
         const portals = [
-            // GENERAL BOARDS
+            // GENERAL BOARDS (Active & Verified)
             { name: "PNet", type: "general", category: "General", link: "www.pnet.co.za" },
             { name: "CareerJunction", type: "general", category: "General", link: "www.careerjunction.co.za" },
             { name: "Indeed South Africa", type: "general", category: "General", link: "za.indeed.com" },
@@ -113,10 +113,9 @@
             { name: "Careers24", type: "general", category: "General", link: "www.careers24.com" },
             { name: "BestJobs South Africa", type: "general", category: "General", link: "www.bestjobs.co.za" },
             { name: "Job Mail", type: "general", category: "General", link: "www.jobmail.co.za" },
-            { name: "Gumtree Jobs", type: "general", category: "General", link: "www.gumtree.co.za/s-jobs/v1c8l10" },
             
-            // GOVERNMENT
-            { name: "DPSA (Vacanies)", type: "government", category: "Government", link: "www.dpsa.gov.za/dpsa2g/vacancies.asp" },
+            // GOVERNMENT (Active & Verified)
+            { name: "DPSA (Vacancies)", type: "government", category: "Government", link: "www.dpsa.gov.za/dpsa2g/vacancies.asp" },
             { name: "E-Recruitment (Gauteng)", type: "government", category: "Government", link: "professionaljobcentre.gpg.gov.za" },
             { name: "City of Cape Town Careers", type: "government", category: "Government", link: "jobs.capetown.gov.za" },
             { name: "Western Cape Govt Jobs", type: "government", category: "Government", link: "www.westerncape.gov.za/jobs" },
@@ -124,36 +123,35 @@
             { name: "Eskom Vacancies", type: "government", category: "Government", link: "web.eskom.co.za/dev_vacancies" },
             { name: "SAPS Careers", type: "government", category: "Government", link: "www.saps.gov.za/careers" },
 
-            // RECRUITMENT AGENCIES / SPECIALIZED
-            { name: "Adcorp", type: "recruitment", category: "Executive", link: "www.adcorpgroup.com" },
+            // RECRUITMENT & TECH (Active & Verified)
+            { name: "Adcorp Group", type: "recruitment", category: "Executive", link: "www.adcorpgroup.com" },
             { name: "Quest Recruitment", type: "recruitment", category: "General", link: "www.quest.co.za" },
             { name: "Kelly", type: "recruitment", category: "General", link: "www.kelly.co.za" },
-            { name: "OfferZen (Tech)", type: "recruitment", category: "Tech", link: "www.offerzen.com" },
-            { name: "Giraffe", type: "recruitment", category: "General", link: "www.giraffe.co.za" },
+            { name: "OfferZen", type: "recruitment", category: "Tech", link: "www.offerzen.com" },
             { name: "Robert Walters", type: "recruitment", category: "Executive", link: "www.robertwalters.com" },
             { name: "Michael Page", type: "recruitment", category: "Executive", link: "www.michaelpage.co.za" },
             { name: "Bizcommunity Jobs", type: "general", category: "Niche", link: "www.bizcommunity.com/Jobs" },
             { name: "NGO Pulse", type: "general", category: "Niche", link: "www.ngopulse.org/vacancies" },
             { name: "Simplify.hr", type: "general", category: "Tech", link: "www.simplify.hr" },
-            { name: "JobJack (Entry Level)", type: "general", category: "General", link: "www.jobjack.co.za" }
+            { name: "JobJack", type: "general", category: "General", link: "www.jobjack.co.za" }
         ];
 
         let currentTypeFilter = 'all';
 
         function renderPortals(data) {
-            const grid = document.getElementById('collegeGrid') || document.getElementById('portalGrid');
+            const grid = document.getElementById('portalGrid');
             grid.innerHTML = '';
             data.forEach(item => {
                 const card = `
                     <div class="bg-white p-8 rounded-3xl border border-slate-100 card-hover transition-all duration-300">
                         <div class="flex justify-between items-start mb-6">
                             <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-wider">${item.category}</span>
-                            <i class="fas fa-external-link-alt text-slate-300"></i>
+                            <i class="fas fa-check-circle text-green-500"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-slate-900">${item.name}</h3>
                         <p class="text-slate-500 text-sm mb-6 uppercase font-semibold tracking-tight">${item.type.replace('-', ' ')}</p>
                         <a href="https://${item.link}" target="_blank" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-4 transition-all">
-                            Visit Portal <i class="fas fa-arrow-right text-xs"></i>
+                            Visit Website <i class="fas fa-arrow-right text-xs"></i>
                         </a>
                     </div>
                 `;
